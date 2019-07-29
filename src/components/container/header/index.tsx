@@ -14,7 +14,7 @@ const HeaderContainer: React.FC<Iprops> = ({setCollapsed}) => {
 
   return (
     <div>
-      <Header style={{ background: '#282c34', padding: 0 }}>
+      <Header style={{ background: '#282c34', padding: 0, height: '60px' }}>
         <Icon
           className="trigger"
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
