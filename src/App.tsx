@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/layout" component={Container}/>
+          <Route path="/" component={Container}/>
         </Switch>
       </Router>
     </div>

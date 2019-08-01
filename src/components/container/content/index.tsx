@@ -1,13 +1,12 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, RouteComponentProps,Switch } from 'react-router-dom'
+import { Route, RouteComponentProps, Switch, Redirect } from 'react-router-dom'
 
-// import DataBase from '../../../pages/dataBase'
-
+const Home = lazy(() => import('../../../pages/home'))
 const DataBase = lazy(() => import('../../../pages/dataBase'))
 const ExcelShow = lazy(() => import('../../../pages/excel'))
 const ShowData = lazy(() => import('../../../pages/show'))
 
-const Content: React.FC<RouteComponentProps> = ({match, location}) => {
+const Content: React.FC<RouteComponentProps> = () => {
   return (
     <div style={{background: 'rgb(67, 73, 86)', height: '88vh'}}>
       <div style={{
@@ -18,9 +17,11 @@ const Content: React.FC<RouteComponentProps> = ({match, location}) => {
       }}>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route path={`${match.url}/dataBase`} component={DataBase} />
-            <Route path={`${match.url}/excel`} component={ExcelShow}/>
-            <Route path={`${match.url}/show`} component={ShowData}/>
+            <Route path={`/`} exact component={Home} />
+            <Route path={`/dataBase`} component={DataBase} />
+            <Route path={`/excel`} component={ExcelShow} />
+            <Route path={`/show`} component={ShowData} />
+            <Redirect from="/*" to="/" />
           </Switch>
         </Suspense>
       </div>

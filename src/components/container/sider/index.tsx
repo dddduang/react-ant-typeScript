@@ -16,8 +16,12 @@ const SiderMenu: React.FC<RouteComponentProps> = ({match, history}) => {
         mode="inline" 
         defaultSelectedKeys={['1']}
         onClick={(item) => { 
-          history.push(`${match.url}/${item.key}`) }}
+          history.push(`/${item.key}`) }}
       >
+        <Menu.Item key="home">
+          <Icon type="home" />
+          <span>首页</span>
+        </Menu.Item>
         <Menu.Item key="dataBase">
           <Icon type="fund" />
           <span>数据检索展示</span>
