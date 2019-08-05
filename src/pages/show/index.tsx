@@ -15,7 +15,7 @@ const formItemLayout = {
 }
 
 const buttonItemLayout = {
-  wrapperCol: { span: 14, offset: 4 }
+  wrapperCol: { span: 14, offset: 6 }
 }
 
 const RegistrationForm = (props: IProps) => {
@@ -43,7 +43,7 @@ const RegistrationForm = (props: IProps) => {
   }
 
     return (
-      <div style={{ background: '#ECECEC', padding: '30px', color: '#000', borderRadius: '5px' }}>
+      <div className="container">
         设备数据检索展示
         <Card>
           <Form onSubmit={handleSubmit}>
