@@ -75,7 +75,7 @@ const record = ()=> {
     onMouseEnter: (event: any) => {
       event.currentTarget.style.color = '#000'
       event.currentTarget.style.backgroundColor = '#fff'
-      console.log(event.currentTarget)
+      // console.log(event.currentTarget)
     }, // 鼠标移入行
     onMouseLeave: (event: any) => {
       event.currentTarget.style.color = '#fff'
