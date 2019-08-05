@@ -24,17 +24,10 @@ const RegistrationForm = (props: IProps) => {
     form: { getFieldDecorator }
   } = props
 
-  // const [name, setName] = useState('ddd')  
-  // const [setAge] = useState(18)
-  // const [setAddress] = useState('CHANGSHA')
-  // const [setStartTime] = useState(2018-1-1)
-  // const [setEndTime] = useState(2019-1-1)
-  // props.form.setFieldsValue({
-  //   name: 'rrr'
-  // })
+  let formValues: never[] = [] // 表单里面的值
 
   const normalize = (value: any, prevValue: any, allValues: any) => {
-    console.log(value, prevValue, allValues)
+    formValues = allValues
     return value
   }
 
@@ -44,10 +37,9 @@ const RegistrationForm = (props: IProps) => {
     e.preventDefault() //阻止默认事件,这里只是说明使用方法
     props.form.validateFields((err: any) => {
       if (!err) {
-        console.info('success');
+        console.info('success', formValues);
       }
     });
-    
   }
 
     return (
