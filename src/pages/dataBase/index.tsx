@@ -1,74 +1,8 @@
-import React from 'react';
-import { Table, Divider, Tag, Button } from 'antd';
+import React, { useState } from 'react';
+import { Table, Divider, Tag, Button, Modal, Popconfirm } from 'antd';
 import './index.css'
 
-const columns = [
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (tags: { map: (arg0: (tag: any) => JSX.Element) => React.ReactNode; }) => (
-      <span>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </span>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (record: { name: React.ReactNode; }) => (
-      <span>
-        <Button type="link">Invite {record.name}</Button>
-        <Divider type="vertical" />
-        <Button type="link">Delete</Button>
-      </span>
-    ),
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
+const { Column, ColumnGroup } = Table;
 
 const record = ()=> { 
   return {
@@ -85,15 +19,88 @@ const record = ()=> {
 } 
 
 const DataBase: React.FC = () => {
+  const [modalVisible, setModalVisible] = useState(false)
+  let [data, setData] = useState([
+    {
+      key: '1',
+      firstName: 'John',
+      lastName: 'Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '2',
+      firstName: 'Jim',
+      lastName: 'Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '3',
+      firstName: 'Joe',
+      lastName: 'Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+  ]);
+  
+
   return (
-    <>
+    <div className="data-container">
       数据库登记管理 
-      <Table 
-      columns={columns} 
-      dataSource={data}  
-      onRow={record} 
-      />
-    </>
+      <Table dataSource={data} onRow={record} >
+        <ColumnGroup title="Name">
+          <Column title="First Name" dataIndex="firstName" key="firstName" />
+          <Column title="Last Name" dataIndex="lastName" key="lastName" />
+        </ColumnGroup>
+        <Column title="Age" dataIndex="age" key="age" />
+        <Column title="Address" dataIndex="address" key="address" />
+        <Column
+          title="Tags"
+          dataIndex="tags"
+          key="tags"
+          render={tags => (
+            <span>
+              {tags.map((tag: any) => (
+                <Tag color="blue" key={tag}>
+                  {tag}
+                </Tag>
+              ))}
+            </span>
+          )}
+        />
+        <Column
+          title="Action"
+          key="action"
+          render={(text, record: any) => (
+            <span>
+              <Button type="link" onClick={() => setModalVisible(true)}>Invite {record.lastName}</Button>
+              <Divider type="vertical" />
+              <Popconfirm title="确定删除吗?" onConfirm={() => 
+                setData(data.filter(item => {return item.key !== record.key}))
+              }>
+                <Button type="link">Delete</Button>
+              </Popconfirm>
+            </span>
+          )}
+        />
+      </Table>
+
+      <Modal
+        title="Vertically centered modal dialog"
+        centered
+        visible={modalVisible}
+        onOk={() => setModalVisible(false)}
+        onCancel={() => setModalVisible(false)}
+      >
+        <p>some contents...</p>
+        <p>some contents...</p>
+        <p>some contents...</p>
+      </Modal>
+    </div>
   )
 }
 
