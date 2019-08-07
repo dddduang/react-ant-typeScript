@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderContainer from './header'
+import Tags from './tags'
 import SiderMenu from './sider'
 import Content from './content'
 import Footer from './footer'
@@ -15,11 +16,11 @@ const Container: React.FC<RouteComponentProps> = ({match, history, location}) =>
         <CollapsedContext.Provider value={collapsed}>
           <SiderMenu match={match} history={history} location={location}/>
         </CollapsedContext.Provider>
-        
 
         <Layout>
           <CollapsedContext.Provider value={collapsed}>
             <HeaderContainer setCollapsed={setCollapsed}/> {/** 类型“”中缺少属性“setCollapsed”，但类型“iprops”中需要该属性, 报错: Property 'setCollapsed' is missing in type '{}' but required in type 'Iprops'.  所以添加一项setCollapsed={setCollapsed}*/ }
+            <Tags />
           </CollapsedContext.Provider>
 
           <Content match={match} history={history} location={location}/>
