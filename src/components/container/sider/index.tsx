@@ -5,9 +5,13 @@ import { RouteComponentProps } from 'react-router-dom'
 
 const { Sider } = Layout;
 
-const SiderMenu: React.FC<RouteComponentProps> = ({match, history}) => {
+const SiderMenu: React.FC<RouteComponentProps> = ({match, history, location}) => {
   // 声明一个叫 "state" 的 state 变量
   const collapsed = useContext(CollapsedContext)
+  const changeTag = ((item: { key: any; }) => {
+    history.push(`/${item.key}`)
+    console.log(location)
+  })
 
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -15,8 +19,7 @@ const SiderMenu: React.FC<RouteComponentProps> = ({match, history}) => {
       <Menu theme="dark" 
         mode="inline" 
         defaultSelectedKeys={['1']}
-        onClick={(item) => { 
-          history.push(`/${item.key}`) }}
+        onClick={changeTag}
       >
         <Menu.Item key="home">
           <Icon type="home" />

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import './index.css'
 import { Tabs } from 'antd';
 import { PaneContext } from 'components/container/context'
+import { RouteComponentProps } from 'react-router-dom'
 
 const { TabPane } = Tabs;
 
@@ -9,11 +10,12 @@ interface Iprops {
   setPanes: (arg1: []) => void
 }
 
-const Tags: React.FC<Iprops> = ({setPanes}) => {
+const Tags: React.FC<Iprops & RouteComponentProps> = ({setPanes, location}) => {
   const panes = useContext(PaneContext)
   const [activeKey, setActiveKey] = useState(panes[0].key)
   const onChange = (activeKey: any) => {
     setActiveKey(activeKey)
+    console.log(activeKey, location)
   };
   
   return (

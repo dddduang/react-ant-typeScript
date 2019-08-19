@@ -33,7 +33,7 @@ const Container: React.FC<RouteComponentProps> = ({match, history, location}) =>
           </CollapsedContext.Provider>
 
           <PaneContext.Provider value={pane}>
-            <Tags setPanes={setPanes} />
+            <Tags setPanes={setPanes} match={match} history={history} location={location}/>
           </PaneContext.Provider>
 
           <Content match={match} history={history} location={location}/>
