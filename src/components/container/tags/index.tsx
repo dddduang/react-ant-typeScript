@@ -4,14 +4,11 @@ import { Tabs } from 'antd';
 import store from '../../../store'
 
 const { TabPane } = Tabs;
-
-
 const Tags: React.FC = () => {
   const state = store.getState()
-  console.log(state)
 
   const onChange = (activeKey: any) => {
-   console.log(activeKey)
+    console.log(activeKey)
   };
   
   return (
@@ -22,7 +19,7 @@ const Tags: React.FC = () => {
         hideAdd
       >
         {state.pane.map(item => (
-          <TabPane tab={item.title} key={item.key}>
+          <TabPane tab={item.pathname} key={item.key} closable={item.closable}> 
             {item.content}
           </TabPane>
         ))}
