@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import './index.css'
-import { Tabs } from 'antd';
+import { Tabs, Button } from 'antd';
 import { PaneContext } from 'components/container/context'
 import { RouteComponentProps } from 'react-router-dom'
 
@@ -17,6 +17,10 @@ const Tags: React.FC<Iprops & RouteComponentProps> = ({setPanes, location}) => {
     setActiveKey(activeKey)
     console.log(activeKey, location)
   };
+  const addTag = () => {
+    panes.push({ title: 'Tab 10', content: 'Content of Tab 10', key: '10' })
+    console.log(panes)
+  }
   
   return (
     <div className="tagsContainer">
@@ -32,6 +36,8 @@ const Tags: React.FC<Iprops & RouteComponentProps> = ({setPanes, location}) => {
           </TabPane>
         ))}
       </Tabs>
+
+      <Button type="primary" shape="circle" icon="plus-circle" onClick={addTag} />
     </div>
   )
 }
