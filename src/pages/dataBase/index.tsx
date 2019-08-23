@@ -6,15 +6,15 @@ const { Column, ColumnGroup } = Table;
 
 const record = ()=> { 
   return {
-    onMouseEnter: (event: any) => {
-      event.currentTarget.style.color = '#000'
-      event.currentTarget.style.backgroundColor = '#fff'
-      // console.log(event.currentTarget)
-    }, // 鼠标移入行
-    onMouseLeave: (event: any) => {
-      event.currentTarget.style.color = '#fff'
-      event.currentTarget.style.backgroundColor = 'rgb(58, 62, 65)'
-    }
+    // onMouseEnter: (event: any) => {
+    //   event.currentTarget.style.color = '#000'
+    //   event.currentTarget.style.backgroundColor = '#fff'
+    //   // console.log(event.currentTarget)
+    // }, // 鼠标移入行
+    // onMouseLeave: (event: any) => {
+    //   event.currentTarget.style.color = '#fff'
+    //   event.currentTarget.style.backgroundColor = 'rgb(58, 62, 65)'
+    // }
   }
 } 
 

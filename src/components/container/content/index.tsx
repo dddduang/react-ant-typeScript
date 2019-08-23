@@ -8,14 +8,14 @@ const ShowData = lazy(() => import('../../../pages/show'))
 
 const Content: React.FC<RouteComponentProps> = () => {
   return (
-    <div style={{background: 'rgb(67, 73, 86)', height: 'calc(100vh - 141px)'}}>
+    <div style={{height: 'calc(100vh - 141px)'}}> {/** background: 'rgb(67, 73, 86)', */}
       <div style={{
         // margin: '24px 16px',
         // padding: 24,
         width: '90%',
         height: '90%',
         margin: 'auto',
-        background: 'rgb(58, 62, 65)',
+        background: 'rgb(58, 62, 65, 0.03)',
       }}>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
